@@ -1,5 +1,6 @@
 #Se importa para obtener función de números aleatorios
 import random
+import math
 
 #VARIABLES
 puntaje = 0
@@ -11,8 +12,12 @@ correctas = 0
 #LISTAS
 preguntas = []
 
+#MATRICES
+matriz = []
+i = 0
+
 print("Bienvenido a tu programa ideal para practicar lo que quieras:) \n ¿Qué quieres practicar hoy? \n")
-opcion = int(input("1. Triángulos \n2. Cuadrados \n3. Pentágonos \n4. Hexágonos \n5. Círculos \n 6. Salir \n"))
+opcion = int(input("1. Triángulos \n2. Cuadrados \n3. Pentágonos \n4. Hexágonos \n5. Círculos \n6. Salir \n"))
 
 #FUNCIONES 
 
@@ -36,16 +41,24 @@ def infoRespuesta():
     print("¿Cuál es el perímetro de la figura con lado", lado, "?")
     print("¿Y cuál es su área?")
 
-def consultar(num):
-    print("La pregunta número ", num, " fue: ", preguntas[num-1])
+def consultar(num, matriz):
+    print("La pregunta número ", num, " fue: ", preguntas[num - 1])
+    print("Tu respuesta fue: ", matriz[num//2][abs((num % 2) - 1)])
     print("¡Hasta pronto!")
 
 def preguntar(consult):
     if (consult == 1):
         num = int(input("¿Cuál pregunta quieres consultar? "))
-        consultar(num)
+        consultar(num, matriz)
     else:
         print("¡Hasta pronto! :)")
+
+def respuestas(i, matriz, respuestaP, respuestaA): 
+        matriz.append([])
+        matriz[i].append(respuestaP)
+        matriz[i].append(respuestaA)
+
+        return matriz
 
 #OPCIONES
 
@@ -60,11 +73,26 @@ if (opcion == 1):
         altura = random.randint(15,25)
         print("¿Cuál es el área del triángulo con base", base, "y altura", altura, "?")
 
-        area = (base*altura)/2
-        respuesta = float(input("Respuesta: "))
+        lado2 = random.randint(10, 15)
+        lado3 = random.randint(10, 15)
+        print("¿Cuál es el perímetro del triángulo con lados", lado2, "y", lado3, "?")
 
-        puntaje = puntaje + verificar(respuesta, area)
-        if (respuesta == area):
+        area = (base*altura)/2
+        perimetro = base + lado2 + lado3
+
+        respuestaP = int(input("Respuesta perímetro: "))
+        respuestaA = float(input("Respuesta área: "))
+
+        matriz = respuestas(i, matriz, respuestaP, respuestaA)
+        i += 1
+
+        verificar(respuestaP, perimetro)
+        verificar(respuestaA, area)
+
+        puntaje = puntaje + verificar(respuestaA, area) + verificar(respuestaP, perimetro)
+        if (respuestaP == perimetro):
+            correctas = correctas + 1
+        if (respuestaA == area):
             correctas = correctas + 1
 
         print("Puntaje: ", puntaje)
@@ -89,8 +117,12 @@ elif (opcion == 2):
 
         respuestaP = int(input("Respuesta perímetro: "))
         respuestaA = int(input("Respuesta área: "))
+
         perimetro = lado*4
         area = lado*lado
+
+        matriz = respuestas(i, matriz, respuestaP, respuestaA)
+        i += 1
 
         verificar(respuestaP, perimetro)
         verificar(respuestaA, area)
@@ -127,6 +159,9 @@ elif (opcion == 3):
         respuestaP = int(input("Respuesta perímetro: "))
         respuestaA = int(input("Respuesta área: "))
 
+        matriz = respuestas(i, matriz, respuestaP, respuestaA)
+        i += 1
+
         verificar(respuestaP, perimetro)
         verificar(respuestaA, area)
 
@@ -161,6 +196,9 @@ elif (opcion == 4):
         area = (perimetro*lado)/2
         respuestaP = int(input("Respuesta perímetro: "))
         respuestaA = int(input("Respuesta área: "))
+
+        matriz = respuestas(i, matriz, respuestaP, respuestaA)
+        i += 1
 
         verificar(respuestaP, perimetro)
         verificar(respuestaA, area)
@@ -198,6 +236,9 @@ elif (opcion == 5):
         respuestaP = int(input("Respuesta perímetro: "))
         respuestaA = int(input("Respuesta área: "))
 
+        matriz = respuestas(i, matriz, respuestaP, respuestaA)
+        i += 1
+
         verificar(respuestaP, perimetro)
         verificar(respuestaA, area)
 
@@ -216,7 +257,6 @@ elif (opcion == 5):
 
     consult = int(input("¿Quieres consultar alguna pregunta? \n1. Sí \n2. No \n"))
     preguntar(consult)
-
 
 #Salir
 elif (opcion == 6):
