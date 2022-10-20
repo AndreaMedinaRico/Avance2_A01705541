@@ -1,27 +1,31 @@
-#Se importa para obtener función de números aleatorios
+#   Se importa para obtener función de números aleatorios y matemáticas
 import random
 import math
 
-#VARIABLES
+#   VARIABLES
 puntaje = 0
 print("Puntaje: ", puntaje)
 
 contador = 0
 correctas = 0
 
-#LISTAS
+
+#   LISTAS
 preguntas = []
 
-#MATRICES
+#   MATRICES
 matriz = []
 i = 0
 
+
+#   BIENVENIDA
 print("Bienvenido a tu programa ideal para practicar lo que quieras:) \n ¿Qué quieres practicar hoy? \n")
 opcion = int(input("1. Triángulos \n2. Cuadrados \n3. Pentágonos \n4. Hexágonos \n5. Círculos \n6. Salir \n"))
 
-#FUNCIONES 
 
-#Verificar si es correcto o incorrecto
+#   FUNCIONES 
+
+#       Verifica si la respuesta es CORRECTA o INCORRECTA
 def verificar(respuesta, valor):
     acum = 0
 
@@ -30,22 +34,29 @@ def verificar(respuesta, valor):
         acum = acum +  100
         preguntas.append("Correcta")    
 
-    else:
+    if (respuesta != valor):
         print("¡Lo siento! Tu respuesta es incorrecta:(")
         acum = acum - 50
         preguntas.append("Incorrecta")
 
     return acum
 
+#       Muestra al usuario las preguntas a responder
 def infoRespuesta():
     print("¿Cuál es el perímetro de la figura con lado", lado, "?")
     print("¿Y cuál es su área?")
 
+#       Muestra al usuario qué RESPONDIÓ a una pregunta y si la tuvo CORECTA o INCORRECTA
 def consultar(num, matriz):
-    print("La pregunta número ", num, " fue: ", preguntas[num - 1])
-    print("Tu respuesta fue: ", matriz[num//2][abs((num % 2) - 1)])
+    resp = num - 1
+    resp2 = resp//2
+    resp3 = resp2 - 1
+    
+    print("La pregunta número ", num, " fue: ", preguntas[resp])
+    print("Tu respuesta fue: ", matriz[resp2][resp3])
     print("¡Hasta pronto!")
 
+#       Pregunta qué pregunta quiere CONSULTAR (saber la respuesta)
 def preguntar(consult):
     if (consult == 1):
         num = int(input("¿Cuál pregunta quieres consultar? "))
@@ -53,6 +64,7 @@ def preguntar(consult):
     else:
         print("¡Hasta pronto! :)")
 
+#       Agrega la respuesta a la MATRIZ de RESPUESTAS
 def respuestas(i, matriz, respuestaP, respuestaA): 
         matriz.append([])
         matriz[i].append(respuestaP)
@@ -60,14 +72,14 @@ def respuestas(i, matriz, respuestaP, respuestaA):
 
         return matriz
 
-#OPCIONES
+#   OPCIONES
 
-#Triángulos
+#       1 = Triángulos
 if (opcion == 1):
-    rep = int(input("¿Estás liste para empezar o quieres seguir practicando? \n1. Sí \n2. No \n"))
+    rep = int(input("¿Estás liste para empezar? \n1. Sí \n2. No \n"))
 
     while (rep == 1):     
-        contador = contador + 1
+        contador = contador + 2
 
         base = random.randint(10, 20)
         altura = random.randint(15,25)
@@ -80,8 +92,8 @@ if (opcion == 1):
         area = (base*altura)/2
         perimetro = base + lado2 + lado3
 
-        respuestaP = int(input("Respuesta perímetro: "))
         respuestaA = float(input("Respuesta área: "))
+        respuestaP = int(input("Respuesta perímetro: "))
 
         matriz = respuestas(i, matriz, respuestaP, respuestaA)
         i += 1
@@ -97,7 +109,7 @@ if (opcion == 1):
 
         print("Puntaje: ", puntaje)
 
-        rep = int(input("¿Estás liste para empezar o quieres seguir practicando? \n1. Sí \n2. No \n"))
+        rep = int(input("¿Quieres seguir practicando? \n1. Sí \n2. No \n"))
 
     print("Tu puntaje final es: ", puntaje)
     print("Realizaste ", contador, "ejercicios, de los cuales ", correctas, " fueron correctos")
@@ -105,9 +117,9 @@ if (opcion == 1):
     consult = int(input("¿Quieres consultar alguna pregunta? \n1. Sí \n2. No \n"))
     preguntar(consult)
 
-#Cuadrados
+#       2 = Cuadrados
 elif (opcion == 2):
-    rep = int(input("¿Estás liste para empezar o quieres seguir practicando? \n1. Sí \n2. No \n"))
+    rep = int(input("¿Estás liste para empezar? \n1. Sí \n2. No \n"))
 
     while (rep == 1):
         contador = contador + 2
@@ -143,9 +155,9 @@ elif (opcion == 2):
     consult = int(input("¿Quieres consultar alguna pregunta? \n1. Sí \n2. No \n"))
     preguntar(consult)
 
-#Pentágonos
+#       3 = Pentágonos
 elif (opcion == 3):
-    rep = int(input("¿Quieres seguir practicando? \n1. Sí \n2. No \n"))
+    rep = int(input("¿Estás liste para empezar? \n1. Sí \n2. No \n"))
 
     while (rep == 1):
         contador = contador + 2
@@ -181,9 +193,9 @@ elif (opcion == 3):
     consult = int(input("¿Quieres consultar alguna pregunta? \n1. Sí \n2. No \n"))
     preguntar(consult)
 
-#Hexágonos
+#       4 = Hexágonos
 elif (opcion == 4):
-    rep = int(input("¿Quieres seguir practicando? \n1. Sí \n2. No \n"))
+    rep = int(input("¿Estás liste para empezar? \n1. Sí \n2. No \n"))
 
     while (rep == 1):
         contador = contador + 2
@@ -220,9 +232,9 @@ elif (opcion == 4):
     preguntar(consult)
 
 
-#Circulos
+#       5 = Círculos
 elif (opcion == 5):
-    rep = int(input("¿Quieres seguir practicando? \n1. Sí \n2. No \n"))
+    rep = int(input("¿Estás liste para empezar? \n1. Sí \n2. No \n"))
 
     while (rep == 1):
         contador = contador + 2
@@ -258,10 +270,10 @@ elif (opcion == 5):
     consult = int(input("¿Quieres consultar alguna pregunta? \n1. Sí \n2. No \n"))
     preguntar(consult)
 
-#Salir
+#       6 = Salir
 elif (opcion == 6):
     print("¡Hasta pronto! :D")
 
-#Cualquier otro número
+#       Cualquier otro número (NO VÁLIDO)
 else:
     print("Opción no válida")
