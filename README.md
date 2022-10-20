@@ -1,4 +1,4 @@
-# Avance2_A01705541
+# PROYECTO_A01705541
 Este repositorio fue creado para almacenar el código sobre la resolución del reto, así como para actualizar sus cambios.
 
 El Programa para la Evaluación Internacional de Alumnos de la OCDE (Organización para la Cooperación y el Desarrollo Económico) realiza encuestas cada 3 años a diversos países para evaluar el desempeño de los alumnos de 15 años en cuanto a lectura, matemáticas y ciencias. En la prueba de 2018, los alumnos mexicanos se encontraron por debajo del promedio de todos los países a los que se les aplica la encuesta, y fue el tercer lugar de América Latina.
